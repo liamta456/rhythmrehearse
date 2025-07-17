@@ -1,4 +1,3 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 const authMiddleware = (req, res, next) => {
@@ -7,7 +6,7 @@ const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
     let token = null;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({ error: 'Unauthorized. '});
+        return res.status(401).json({ error: 'Unauthorized.' });
     }
     token = authHeader.substring('Bearer '.length);
     try {
@@ -15,7 +14,7 @@ const authMiddleware = (req, res, next) => {
         req.user = { id: decodedPayload.sub };
         next();
     } catch (error) {
-        return res.status(401).json({ error: 'Unauthorized. '});
+        return res.status(401).json({ error: 'Unauthorized.' });
     }
 };
 
