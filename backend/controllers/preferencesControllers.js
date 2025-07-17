@@ -1,9 +1,8 @@
 const supabase = require('../supabaseClient.js');
 
-// TODO: Change to handle userID with req.user or req.auth using auth middleware; req.body is less secure.
 const getUser = async (req, res) => {
     try {
-        const { userId } = req.body;
+        const userId = req.user.id;
         const { data, error } = await supabase
             .from('additional_user_info')
             .select()
@@ -20,10 +19,9 @@ const getUser = async (req, res) => {
     }
 };
 
-// TODO: Same comment as for getUser
-const updateCoolValue = async (req, res) => {
+const changeCoolValue = async (req, res) => {
     try {
-        const { userId } = req.body;
+        const userId = req.user.id;
         const { data: readData, error: readError } = await supabase
             .from('additional_user_info')
             .select('is_cool')
@@ -52,4 +50,4 @@ const updateCoolValue = async (req, res) => {
     }
 };
 
-module.exports = { getUser, updateCoolValue };
+module.exports = { getUser, changeCoolValue };
