@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
-  imports: [FormsModule, NgIf, ],
+  imports: [FormsModule, NgIf],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
 })
@@ -18,9 +18,10 @@ constructor(private http: HttpClient, private router: Router) {}
   name: string = '';
   password: string = '';
   errorMessage: string = '';
+  isLoading: boolean = false;
 
   onRegister() {
-    console.log('Registering: ', {
+    console.log('Registering:', {
       email: this.email,
       confirmEmail: this.confirmEmail,
       name: this.name,
@@ -36,6 +37,7 @@ constructor(private http: HttpClient, private router: Router) {}
       return;
     }
     this.errorMessage = '';
+    this.isLoading = true;
     this.registerUser();
   }
 
@@ -50,9 +52,13 @@ constructor(private http: HttpClient, private router: Router) {}
       next: (res) => {
         console.log('Registration successful.');
         this.router.navigate(['/register-success']);
+        this.isLoading = false;
       },
       error: (err) => {
-        console.log('Registration unsuccessful.');
+        // TODO: address issue of user logging in with a set of credentials already used (i.e. same email as someone else)
+        console.log('Registration failed.');
+        this.errorMessage = 'Registration failed.';
+        this.isLoading = false;
       }
     });
   }
