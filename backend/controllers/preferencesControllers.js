@@ -54,7 +54,7 @@ const changeCoolValue = async (req, res) => {
             console.log('Changin cool value was unsuccessful: no such resource found');
             return res.status(404).json({ error: 'No such resource found.' });
         }
-        console.log('Changing cool value was successful');
+        console.log('Changing cool value was successful.');
         res.status(200).json({ message: 'is_cool value updated successfully.', user: updateData });
     } catch (error) {
         console.log('Changing cool value was unsuccessful:', 'server error');

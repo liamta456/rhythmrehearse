@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { getUser, changeCoolValue } = require('../controllers/preferencesControllers');
 
-router.route('/')
-    .get(getUser)
-    .patch(changeCoolValue);
+router
+    .get('/', getUser)
+    .patch('/cool', changeCoolValue);
 
 module.exports = router;
