@@ -55,9 +55,12 @@ constructor(private http: HttpClient, private router: Router) {}
         this.isLoading = false;
       },
       error: (err) => {
-        // TODO: address issue of user logging in with a set of credentials already used (i.e. same email as someone else)
-        console.log('Registration failed.');
-        this.errorMessage = 'Registration failed.';
+        console.log('Registration failed.', err);
+        if (err.error.error === 'duplicate key value violates unique constraint \"users_email_key\"') {
+          this.errorMessage = 'Registration failed: email is already in use.';
+        } else {
+          this.errorMessage = 'Registration failed.';
+        }
         this.isLoading = false;
       }
     });

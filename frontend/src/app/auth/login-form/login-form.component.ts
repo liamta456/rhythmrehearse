@@ -44,7 +44,6 @@ export class LoginFormComponent {
           if (res.session && res.session.access_token) {
             localStorage.setItem('jwt', res.session.access_token);
           }
-          //TODO: redirect the user to their unique home page (e.g. /home/:userId)
           this.router.navigate([`home/${res.user.id}`]);
           this.isLoading = false;
         },

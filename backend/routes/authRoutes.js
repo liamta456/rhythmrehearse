@@ -4,8 +4,6 @@ const { register, login, logout } = require('../controllers/authControllers');
 
 router
     .post('/register', register)
-    .post('/login', login)
-    //TODO: add logout handler and functionality
-    .post('/logout', logout);
+    .post('/login', login);
 
 module.exports = router;

@@ -68,12 +68,8 @@ const login = async (req, res) => {
         });
     } catch (error) {
         console.log('Login unsuccessful:', 'server error');
-        res.status(500).json({ error: 'Server error.' });
+        res.status(500).json({ error: error });
     }
 };
 
-const logout = async (req, res) => {
-    res.status(200).json({ message: 'User logged out successfully.' });
-};
-
-module.exports = { register, login, logout };
+module.exports = { register, login };

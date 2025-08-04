@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('userId');
@@ -33,7 +33,19 @@ export class HomeComponent {
         },
         error: (err) => {
           console.log('User retrieval failed.');
+          if (err.status === 401) {
+            localStorage.removeItem('jwt');
+            console.log('Session expired.');
+            window.alert('Session expired. Please log in again.');
+            this.router.navigate(['/login']);
+          }
         }
       });
+  }
+
+  logout() {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['/login']);
+    console.log('Logout successful.');
   }
 }
