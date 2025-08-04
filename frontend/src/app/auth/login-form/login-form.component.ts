@@ -37,12 +37,15 @@ export class LoginFormComponent {
       email: this.email,
       password: this.password
     };
-    this.http.post('http://localhost:3000/api/auth/login', payload)
+    this.http.post<any>('http://localhost:3000/api/auth/login', payload)
       .subscribe({
         next: (res) => {
           console.log('Login successful.');
+          if (res.session && res.session.access_token) {
+            localStorage.setItem('jwt', res.session.access_token);
+          }
           //TODO: redirect the user to their unique home page (e.g. /home/:userId)
-          this.router.navigate(['/home']);
+          this.router.navigate([`home/${res.user.id}`]);
           this.isLoading = false;
         },
         error: (err) => {

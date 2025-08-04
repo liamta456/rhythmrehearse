@@ -70,6 +70,10 @@ const login = async (req, res) => {
         console.log('Login unsuccessful:', 'server error');
         res.status(500).json({ error: 'Server error.' });
     }
-}
+};
 
-module.exports = { register, login };
+const logout = async (req, res) => {
+    res.status(200).json({ message: 'User logged out successfully.' });
+};
+
+module.exports = { register, login, logout };

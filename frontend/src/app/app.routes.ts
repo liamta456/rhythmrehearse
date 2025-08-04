@@ -9,5 +9,5 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'register-success', component: RegisterSuccessComponent },
     { path: 'login', component: LoginComponent},
-    { path: 'home', component: HomeComponent }
+    { path: 'home/:userId', component: HomeComponent }
 ];
