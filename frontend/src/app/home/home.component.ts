@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PracticeSessionTimerComponent } from "../practice-session-timer/practice-session-timer.component";
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule],
+  imports: [FormsModule, PracticeSessionTimerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

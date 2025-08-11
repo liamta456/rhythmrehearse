@@ -1,0 +1,25 @@
+<div class="timer-widget">
+    <h2>Practice Session Timer</h2>
+
+    <div class="timer-display">{{ formattedTime }}</div>
+
+    <button *ngIf="!isRunning" (click)="startTimer()" class="start">Start</button>
+    <button *ngIf="isRunning" (click)="pauseTimer()" class="start">Pause</button>
+    <button *ngIf="isSessionActive" (click)="endTimer()" class="start">End</button>
+
+    <div *ngIf="showSummaryForm" class="summary-form">
+        <form (ngSubmit)="saveSession()">
+            <input type="text" name="songsPracticed" [(ngModel)]="songsPracticed" placeholder="Songs practiced">
+            <input type="text" name="techniquesPracticed" [(ngModel)]="techniquesPracticed" placeholder="Techniques practiced">
+            <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">
+            <textarea name="comments" [(ngModel)]="comments" placeholder="Comments"></textarea>
+
+            <button type="submit">Save Session</button>
+        </form>
+    </div>
+
+    <div *ngIf="showSubmissionSuccess" class="submission-success">
+        <h3>Congrats! Your session has been saved.</h3>
+        <button (click)="showSubmissionSuccess = false">Close</button>
+    </div>
+</div>
