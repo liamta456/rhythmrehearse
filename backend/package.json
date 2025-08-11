@@ -1,16 +1,13 @@
 {
-  "name": "backend",
+  "name": "rhythmrehearse-backend",
   "version": "1.0.0",
-  "description": "Login app to help learn angular, node.js, express, and user authentication",
-  "main": "index.js",
+  "description": "Backend API for RhythmRehearse, a music practice application with user authentication",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "login",
-    "cool"
-  ],
+  "keywords": [],
   "author": "Liam Ta",
   "license": "MIT",
   "type": "commonjs",

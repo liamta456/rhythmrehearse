@@ -26,7 +26,6 @@ const register = async (req, res) => {
                 user_id: data.user.id,
                 email: data.user.email,
                 name: data.user.user_metadata.name,
-                is_cool: false
             }
         ]);
         if (insertError) {

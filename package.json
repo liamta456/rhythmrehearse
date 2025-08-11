@@ -1,23 +1,23 @@
 {
-  "name": "login-app",
+  "name": "rhythmrehearse",
   "version": "1.0.0",
-  "description": "Full-stack login application developed using Angular (frontend), Node.js/Express (backend), and Supabase (database/auth).",
+  "description": "Full-stack music practice application developed using Angular (frontend), Node.js/Express (backend), and Supabase (database/auth).",
   "main": "index.js",
   "scripts": {
     "start:all": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liamta456/login-app.git"
+    "url": "git+https://github.com/liamta456/rhythmrehearse.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["music", "practice", "rhythm", "angular", "nodejs", "supabase"],
+  "author": "Liam Ta",
+  "license": "MIT",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/liamta456/login-app/issues"
+    "url": "https://github.com/liamta456/rhythmrehearse/issues"
   },
-  "homepage": "https://github.com/liamta456/login-app#readme",
+  "homepage": "https://github.com/liamta456/rhythmrehearse#readme",
   "devDependencies": {
     "concurrently": "^9.2.0"
   }
