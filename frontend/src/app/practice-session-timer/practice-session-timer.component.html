@@ -3,12 +3,25 @@
 
     <div class="timer-display">{{ formattedTime }}</div>
 
-    <button *ngIf="!isRunning" (click)="startTimer()" class="start">Start</button>
-    <button *ngIf="isRunning" (click)="pauseTimer()" class="start">Pause</button>
-    <button *ngIf="isSessionActive" (click)="endTimer()" class="start">End</button>
+    <button *ngIf="!isRunning" (click)="startTimer()" class="start-btn">Start</button>
+    <button *ngIf="isRunning" (click)="pauseTimer()" class="pause-btn">Pause</button>
+    <button *ngIf="isSessionActive" (click)="endTimer()" class="stop-btn">End</button>
 
     <div *ngIf="showSummaryForm" class="summary-form">
         <form (ngSubmit)="saveSession()">
+            <select name="instrumentSelection" [(ngModel)]="instrumentSelection" (ngModelChange)="onInstrumentChange()" required>
+                <option value="" disabled selected>Select an instrument</option>
+                <option *ngFor="let i of instruments" [value]="i">{{ i }}</option>
+                <option value="Other">Other</option>
+            </select>
+            <input *ngIf="showCustomInstrument"
+                type="text"
+                name="customInstrument"
+                [(ngModel)]="customInstrument"
+                placeholder="Enter custom instrument"
+                required
+            >
+
             <input type="text" name="songsPracticed" [(ngModel)]="songsPracticed" placeholder="Songs practiced">
             <input type="text" name="techniquesPracticed" [(ngModel)]="techniquesPracticed" placeholder="Techniques practiced">
             <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">

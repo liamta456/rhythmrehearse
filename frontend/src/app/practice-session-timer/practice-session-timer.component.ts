@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import INSTRUMENTS from '../shared/constants/instruments';
 
 @Component({
   selector: 'app-practice-session-timer',
-  imports: [NgIf, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './practice-session-timer.component.html',
   styleUrl: './practice-session-timer.component.css'
 })
@@ -15,9 +16,15 @@ export class PracticeSessionTimerComponent {
   isRunning: boolean = false;
   isSessionActive: boolean = false;
   formattedTime: string = '00:00:00';
-
+  
   // Summary Form variables
   showSummaryForm: boolean = false;
+
+  instruments: string[] = INSTRUMENTS;
+  showCustomInstrument: boolean = false;
+  customInstrument: string = '';
+  instrumentSelection: string = '';
+
   songsPracticed: string = '';
   techniquesPracticed: string = '';
   thingsLearned: string = '';
@@ -61,10 +68,33 @@ export class PracticeSessionTimerComponent {
       `${seconds.toString().padStart(2, '0')}`;
   }
 
+  onInstrumentChange() {
+    this.showCustomInstrument = this.instrumentSelection === 'Other';
+    if (!this.showCustomInstrument) {
+      this.customInstrument = '';
+    }
+  }
+
   saveSession() {
+    let finalInstrument: string = '';
+    if (this.instrumentSelection === 'Other') {
+      finalInstrument = this.customInstrument;
+    } else {
+      finalInstrument = this.instrumentSelection;
+    }
+    if (!finalInstrument.trim()) {
+      alert('Please select an instrument.');
+      return;
+    }
+
     // TODO: add http request logic to record session data to the database (requires additions to the backend as well)
 
     this.showSummaryForm = false;
+
+    this.showCustomInstrument = false;
+    this.customInstrument = '';
+    this.instrumentSelection = '';
+
     this.songsPracticed = '';
     this.techniquesPracticed = '';
     this.thingsLearned = '';
