@@ -1,5 +1,5 @@
 <div class="register-form-container">
-    <h2>Register</h2>
+    <h2 class="register-title">Register</h2>
     <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     <form (ngSubmit)="onRegister()">
         <input type="email" placeholder="Email" [(ngModel)]="email" name="email">
@@ -8,4 +8,7 @@
         <input type="password" placeholder="Password" [(ngModel)]="password" name="password">
         <button type="submit" [disabled]="isLoading">Register</button>
     </form>
+    <p>
+    Already have an account? Click <a href="/login">here</a> to login.
+    </p>
 </div>

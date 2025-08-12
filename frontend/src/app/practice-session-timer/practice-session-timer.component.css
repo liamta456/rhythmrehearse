@@ -1,0 +1,120 @@
+.timer-widget {
+    background: #fff0df;
+    text-align: center;
+    border: 1px solid #999999;
+    border-radius: 24px;
+    padding: 20px;
+    width: 200px;
+    height: 268px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.350);
+}
+
+.timer-display {
+    font-size: 44px;
+    font-weight: bold;
+    text-align: center;
+    margin: 8px;
+}
+
+.start-btn {
+    width: 160px;
+    height: 32px;
+    margin: 2px;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background-color: #b1e6a4;
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color: #a8da9b;
+}
+
+.pause-btn {
+    width: 160px;
+    height: 32px;
+    margin: 2px;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background-color: #cfcfcf;
+    cursor: pointer;
+}
+
+.pause-btn:hover {
+    background-color: #c4c4c4;
+}
+
+.end-btn {
+    width: 160px;
+    height: 32px;
+    margin: 2px;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background-color: #ebb3b3;
+    cursor: pointer;
+}
+
+.end-btn:hover {
+    background-color: #e0adad;
+}
+
+.summary-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.280);
+}
+
+.summary-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #fff0df;
+    border: 1px solid #999999;
+    border-radius: 24px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.summary-form select,
+.summary-form input,
+.summary-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.summary-form textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.summary-form button {
+    padding: 0.75rem;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background: #ffa666;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.75rem;
+}
+
+.summary-form button:hover {
+    background: #e6955b
+}
+
+.summary-form button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}

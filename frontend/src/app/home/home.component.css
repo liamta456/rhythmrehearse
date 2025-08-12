@@ -1,0 +1,36 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #D2691E, #F4A460, #FFA500);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.350);
+}
+
+.app-title {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.main-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.logout-btn {
+    padding: 0.5rem;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background: #ffa666;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #e6955b
+}

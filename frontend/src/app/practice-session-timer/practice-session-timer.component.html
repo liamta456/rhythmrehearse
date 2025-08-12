@@ -1,11 +1,13 @@
 <div class="timer-widget">
     <h2>Practice Session Timer</h2>
 
-    <div class="timer-display">{{ formattedTime }}</div>
+    <div class="timer-display">
+        {{ formattedTime }}
+    </div>
 
     <button *ngIf="!isRunning" (click)="startTimer()" class="start-btn">Start</button>
     <button *ngIf="isRunning" (click)="pauseTimer()" class="pause-btn">Pause</button>
-    <button *ngIf="isSessionActive" (click)="endTimer()" class="stop-btn">End</button>
+    <button *ngIf="isSessionActive" (click)="endTimer()" class="end-btn">End</button>
 
     <div *ngIf="showSummaryForm" class="summary-form">
         <form (ngSubmit)="saveSession()">

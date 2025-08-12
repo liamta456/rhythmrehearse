@@ -1,4 +1,9 @@
-<h1 class="app-title">RhythmRehearse</h1>
-<button type="button" (click)="logout()">Logout</button>
-<p>home works! Hello {{ userName }}.</p>
-<app-practice-session-timer></app-practice-session-timer>
+<header class="app-header">
+    <h1 class="app-title">RhythmRehearse</h1>
+    <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+</header>
+
+<main class="main-content">
+    <h3>Welcome, {{ userName }}.</h3>
+    <app-practice-session-timer></app-practice-session-timer>
+</main>
