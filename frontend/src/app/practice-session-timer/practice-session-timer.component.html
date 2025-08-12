@@ -27,7 +27,7 @@
             <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">
             <textarea name="comments" [(ngModel)]="comments" placeholder="Comments"></textarea>
 
-            <button type="submit">Save Session</button>
+            <button type="submit"[disabled]="isLoading">{{ isLoading ? 'Saving...' : 'Save Session' }}</button>
         </form>
     </div>
 

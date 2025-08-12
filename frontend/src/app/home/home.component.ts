@@ -25,7 +25,7 @@ export class HomeComponent {
 
   getUser() {
     const token = localStorage.getItem('jwt');
-    this.http.get<any>(`http://localhost:3000/api/preferences`, {
+    this.http.get<any>(`http://localhost:3000/api/user`, {
       headers: { Authorization: `Bearer ${ token }`}
     })
       .subscribe({
