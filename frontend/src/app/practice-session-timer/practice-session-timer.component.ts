@@ -93,6 +93,12 @@ export class PracticeSessionTimerComponent {
       this.techniquesPracticed = '';
       this.thingsLearned = '';
       this.comments = '';
+
+      this.secondsElapsed = 0;
+      this.intervalId = null;
+      this.isRunning = false;
+      this.isSessionActive = false;
+      this.updateFormattedTime();
     }
   }
 
@@ -144,6 +150,7 @@ export class PracticeSessionTimerComponent {
         this.secondsElapsed = 0;
         this.intervalId = null;
         this.isRunning = false;
+        this.isSessionActive = false;
         this.updateFormattedTime();
 
         this.showSubmissionSuccess = true;

@@ -28,6 +28,11 @@
     background: #ffa666;
     font-size: 1.25rem;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.register-form-container button:hover {
+    background: #e6955b
 }
 
 .register-title {

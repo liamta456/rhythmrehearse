@@ -9,3 +9,10 @@ body {
     background: linear-gradient(45deg, #c07b49, #e9a76c, #ffe6b8);
     background-attachment: fixed;
 }
+
+/*
+    TODO:
+    - add styling for practice session submission success
+    - address popup size for submission form when choosing 'Other' instrument option
+    - address login/registration error messages compatability with new styling
+*/
