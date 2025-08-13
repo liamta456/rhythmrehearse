@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', authMiddleware, userRoutes);
-app.use('/api/practice-session', authMiddleware, practiceSessionRoutes);
+app.use('/api/practice-sessions', authMiddleware, practiceSessionRoutes);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

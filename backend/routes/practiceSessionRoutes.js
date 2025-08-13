@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { savePracticeSession } = require('../controllers/practiceSessionControllers');
+const { savePracticeSession, getPracticeSessionList } = require('../controllers/practiceSessionControllers');
 
-router.post('/', savePracticeSession);
+router.route('/')
+    .post(savePracticeSession)
+    .get(getPracticeSessionList);
 
 module.exports = router;

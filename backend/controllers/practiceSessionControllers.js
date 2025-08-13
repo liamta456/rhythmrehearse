@@ -29,4 +29,22 @@ const savePracticeSession = async (req, res) => {
     }
 }
 
-module.exports = { savePracticeSession };
+const getPracticeSessionList = async (req, res) => {
+    const userId = req.user.id;
+    try {
+        const { data, error: getError } = await supabase
+            .from('practice_sessions')
+            .select('id, created_at, duration_seconds, instrument')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(10);
+        if (getError) {
+            return res.status(500).json({ error: getError.message });
+        }
+        return res.status(200).json({ practiceSessions: data });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+module.exports = { savePracticeSession, getPracticeSessionList };

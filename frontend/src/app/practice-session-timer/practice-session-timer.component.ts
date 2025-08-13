@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -36,6 +36,8 @@ export class PracticeSessionTimerComponent {
   techniquesPracticed: string = '';
   thingsLearned: string = '';
   comments: string = '';
+
+  @Output() sessionSaved = new EventEmitter<void>();
 
   startTimer() {
     if (!this.isRunning && this.showSummaryForm === false) {
@@ -129,7 +131,7 @@ export class PracticeSessionTimerComponent {
       comments: this.comments
     };
 
-    this.http.post('http://localhost:3000/api/practice-session', payload, {
+    this.http.post('http://localhost:3000/api/practice-sessions', payload, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res) => {
@@ -154,6 +156,8 @@ export class PracticeSessionTimerComponent {
         this.updateFormattedTime();
 
         this.showSubmissionSuccess = true;
+        
+        this.sessionSaved.emit();
       },
       error: (err) => {
         this.isLoading = false;

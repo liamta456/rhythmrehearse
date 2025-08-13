@@ -10,6 +10,7 @@
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.350);
 }
 
+/* TODO: center app title in the header */
 .app-title {
     flex: 1;
     text-align: center;
@@ -19,6 +20,13 @@
 .main-content {
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+.widgets-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .logout-btn {

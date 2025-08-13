@@ -1,0 +1,61 @@
+.practice-session-list-widget {
+    background: #fff0df;
+    text-align: center;
+    border: 1px solid #999999;
+    border-radius: 24px;
+    padding: 20px;
+    width: 200px;
+    height: 268px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.350);
+}
+
+.widget-title {
+    margin: 0;
+}
+
+.no-sessions {
+    color: #777;
+}
+
+.show-sessions {
+    height: 236px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.practice-session-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.practice-session-item {
+    background: #ffe6c9;
+    border: 1px solid #e2ccb2;
+    border-radius: 8px;
+    padding: 2px;
+    margin: 6px 0;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.350);
+}
+
+.practice-session-item:hover {
+    background: #f0d8bc;
+    cursor: pointer;
+}
+
+.session-instrument {
+    font-weight: bold;
+    color: #333;
+}
+
+.session-date {
+    color: #777;
+    font-size: 0.9rem
+}
+
+.session-duration {
+    color: #777;
+}

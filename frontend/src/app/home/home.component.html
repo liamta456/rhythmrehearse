@@ -5,5 +5,8 @@
 
 <main class="main-content">
     <h3>Welcome, {{ userName }}.</h3>
-    <app-practice-session-timer></app-practice-session-timer>
+    <div class="widgets-container">
+        <app-practice-session-timer (sessionSaved)="loadSessions()"></app-practice-session-timer>
+        <app-practice-session-list [practiceSessions]="practiceSessions"></app-practice-session-list>
+    </div>
 </main>

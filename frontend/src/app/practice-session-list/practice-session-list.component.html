@@ -1,0 +1,20 @@
+<div class="practice-session-list-widget">
+    <h2 class="widget-title">Past Sessions</h2>
+
+    <div *ngIf="practiceSessions.length === 0; else showSessions">
+        <p class="no_sessions">No past sessions to display.</p>
+    </div>
+
+    <ng-template #showSessions>
+        <div class="show-sessions">
+            <ul class="practice-session-list">
+                <li *ngFor="let session of practiceSessions" class="practice-session-item">
+                    <div class="session-instrument">{{ session.instrument }}</div>
+                    <div class="session-date">{{ session.created_at | date: 'short' }}</div>
+                    <div class="session-duration">{{ formatTime(session.duration_seconds) }}</div>
+                </li>
+                <!-- TODO: add 'load more' functionality (currently limited to 10 by backend logic in practiceSessionControllers) -->
+            </ul>
+        </div>
+    </ng-template>
+</div>
