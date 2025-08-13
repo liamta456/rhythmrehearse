@@ -99,7 +99,7 @@
     resize: vertical;
 }
 
-.summary-form button {
+.submit-btn {
     padding: 0.75rem;
     border: 1px solid #999999;
     border-radius: 8px;
@@ -110,11 +110,25 @@
     margin-top: 0.75rem;
 }
 
-.summary-form button:hover {
+.submit-btn:hover {
     background: #e6955b
 }
 
-.summary-form button:disabled {
+.submit-btn:disabled {
     background: #cccccc;
     cursor: not-allowed;
+}
+
+.discard-btn {
+    padding: 0.75rem;
+    border: 1px solid #999999;
+    border-radius: 8px;
+    background: #ebb3b3;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.discard-btn:hover {
+    background: #e0adad
 }

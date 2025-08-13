@@ -81,6 +81,21 @@ export class PracticeSessionTimerComponent {
     }
   }
 
+  discardSession() {
+    if (confirm('Are you sure you want to discard this session? All corresponding data will be lost.')) {
+      this.showSummaryForm = false;
+
+      this.showCustomInstrument = false;
+      this.customInstrument = '';
+      this.instrumentSelection = '';
+
+      this.songsPracticed = '';
+      this.techniquesPracticed = '';
+      this.thingsLearned = '';
+      this.comments = '';
+    }
+  }
+
   saveSession() {
     let finalInstrument: string = '';
     if (this.instrumentSelection === 'Other') {
