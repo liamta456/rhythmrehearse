@@ -89,8 +89,8 @@ export class PracticeSessionFormComponent {
 
   saveSession() {
     if (this.mode === 'create' && this.durationSeconds === 0) {
-        alert('Practice session duration must be greater than 0 seconds.');
-        return;
+      alert('Practice session duration must be greater than 0 seconds.');
+      return;
     }
 
     let finalInstrument: string = '';
@@ -144,7 +144,6 @@ export class PracticeSessionFormComponent {
           this.isLoadingSave = false;
           console.error('Error saving practice session.');
           alert('Failed to save practice session. Please try again.');
-          // TODO: show different alert if duration is 0 (currently shows above alert)
         }
       });
     } else {
