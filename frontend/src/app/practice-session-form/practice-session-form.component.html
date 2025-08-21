@@ -1,0 +1,32 @@
+<div class="form-container">
+
+    <form (ngSubmit)="saveSession()">
+        <h2 *ngIf="mode === 'create'" class="form-header">Save Session</h2>
+        <h2 *ngIf="mode === 'edit'" class="form-header">Edit Session</h2>
+
+        <div class="form-field-container">
+            <select name="instrumentSelection" [(ngModel)]="instrumentSelection" (ngModelChange)="onInstrumentChange()" required>
+                <option value="" disabled selected>Select an instrument</option>
+                <option *ngFor="let i of instruments" [value]="i">{{ i }}</option>
+                <option value="Other">Other</option>
+            </select>
+            <input *ngIf="showCustomInstrument"
+                type="text"
+                name="customInstrument"
+                [(ngModel)]="customInstrument"
+                placeholder="Enter custom instrument"
+                required
+            >
+
+            <input type="text" name="songsPracticed" [(ngModel)]="songsPracticed" placeholder="Songs practiced">
+            <input type="text" name="techniquesPracticed" [(ngModel)]="techniquesPracticed" placeholder="Techniques practiced">
+            <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">
+            <textarea name="comments" [(ngModel)]="comments" placeholder="Comments"></textarea>
+        </div>
+
+        <button type="submit" *ngIf="mode === 'create'" class="submit-btn" [disabled]="isLoadingSave">{{ isLoadingSave ? 'Saving...' : 'Save Session' }}</button>
+        <button type="submit" *ngIf="mode === 'edit'" class="submit-btn" [disabled]="isLoadingSave">{{ isLoadingSave ? 'Saving...' : 'Save Changes' }}</button>
+        <button type="button" *ngIf="mode === 'create'" class="discard-btn" (click)="discardSession()">Discard Session</button>
+        <button type="button" *ngIf="mode === 'edit'" class="discard-btn" (click)="deleteSession()" [disabled]="isLoadingDelete">{{ isLoadingDelete ? 'Deleting...' : 'Delete Session' }}</button>
+    </form>
+</div>

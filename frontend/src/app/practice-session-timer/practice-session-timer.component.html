@@ -9,33 +9,10 @@
     <button *ngIf="isRunning" (click)="pauseTimer()" class="pause-btn">Pause</button>
     <button *ngIf="isSessionActive" (click)="endTimer()" class="end-btn">End</button>
 
-    <div *ngIf="showSummaryForm" class="summary-form">
-        <form (ngSubmit)="saveSession()">
-            <select name="instrumentSelection" [(ngModel)]="instrumentSelection" (ngModelChange)="onInstrumentChange()" required>
-                <option value="" disabled selected>Select an instrument</option>
-                <option *ngFor="let i of instruments" [value]="i">{{ i }}</option>
-                <option value="Other">Other</option>
-            </select>
-            <input *ngIf="showCustomInstrument"
-                type="text"
-                name="customInstrument"
-                [(ngModel)]="customInstrument"
-                placeholder="Enter custom instrument"
-                required
-            >
-
-            <input type="text" name="songsPracticed" [(ngModel)]="songsPracticed" placeholder="Songs practiced">
-            <input type="text" name="techniquesPracticed" [(ngModel)]="techniquesPracticed" placeholder="Techniques practiced">
-            <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">
-            <textarea name="comments" [(ngModel)]="comments" placeholder="Comments"></textarea>
-
-            <button type="submit" class="submit-btn" [disabled]="isLoading">{{ isLoading ? 'Saving...' : 'Save Session' }}</button>
-            <button type="button" class="discard-btn" (click)="discardSession()">Discard Session</button>
-        </form>
-    </div>
-
-    <div *ngIf="showSubmissionSuccess" class="submission-success">
-        <h3>Congrats! Your session has been saved.</h3>
-        <button (click)="showSubmissionSuccess = false">Close</button>
-    </div>
+    <app-practice-session-form
+        *ngIf="showPracticeSessionForm"
+        [durationSeconds]="durationSeconds"
+        (formCompleted)="onFormCompleted()"
+        (formDiscarded)="onFormDiscarded()"
+    ></app-practice-session-form>
 </div>

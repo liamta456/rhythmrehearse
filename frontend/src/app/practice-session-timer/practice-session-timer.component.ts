@@ -3,48 +3,33 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import INSTRUMENTS from '../shared/constants/instruments';
+import { PracticeSessionFormComponent } from '../practice-session-form/practice-session-form.component';
 
 @Component({
   selector: 'app-practice-session-timer',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PracticeSessionFormComponent],
   templateUrl: './practice-session-timer.component.html',
   styleUrl: './practice-session-timer.component.css'
 })
 export class PracticeSessionTimerComponent {
   constructor(private http: HttpClient) {}
 
-  // Timer variables
-
-  secondsElapsed: number = 0;
+  @Output() durationSeconds: number = 0;
   intervalId: any = null;
   isRunning: boolean = false;
   isSessionActive: boolean = false;
   formattedTime: string = '00:00:00';
-  
-  // Summary Form variables
 
-  showSummaryForm: boolean = false;
-  showSubmissionSuccess: boolean = false;
-  showCustomInstrument: boolean = false;
-  isLoading: boolean = false;
-
-  instruments: string[] = INSTRUMENTS;
-  customInstrument: string = '';
-  instrumentSelection: string = '';
-
-  songsPracticed: string = '';
-  techniquesPracticed: string = '';
-  thingsLearned: string = '';
-  comments: string = '';
+  showPracticeSessionForm: boolean = false;
 
   @Output() sessionSaved = new EventEmitter<void>();
 
   startTimer() {
-    if (!this.isRunning && this.showSummaryForm === false) {
+    if (!this.isRunning && this.showPracticeSessionForm === false) {
       this.isRunning = true;
       this.isSessionActive = true;
       this.intervalId = setInterval(() => {
-        this.secondsElapsed++;
+        this.durationSeconds++;
         this.updateFormattedTime();
       }, 1000);
     }
@@ -62,13 +47,13 @@ export class PracticeSessionTimerComponent {
     this.isSessionActive = false;
     clearInterval(this.intervalId);
 
-    this.showSummaryForm = true;
+    this.showPracticeSessionForm = true;
   }
 
   updateFormattedTime() {
-    const hours = Math.floor(this.secondsElapsed / 3600);
-    const minutes = Math.floor((this.secondsElapsed % 3600) / 60);
-    const seconds = this.secondsElapsed % 60;
+    const hours = Math.floor(this.durationSeconds / 3600);
+    const minutes = Math.floor((this.durationSeconds % 3600) / 60);
+    const seconds = this.durationSeconds % 60;
 
     this.formattedTime =
       `${hours.toString().padStart(2, '0')}:` +
@@ -76,95 +61,26 @@ export class PracticeSessionTimerComponent {
       `${seconds.toString().padStart(2, '0')}`;
   }
 
-  onInstrumentChange() {
-    this.showCustomInstrument = this.instrumentSelection === 'Other';
-    if (!this.showCustomInstrument) {
-      this.customInstrument = '';
-    }
+  onFormDiscarded() {
+    this.showPracticeSessionForm = false;
+
+    this.durationSeconds = 0;
+    this.intervalId = null;
+    this.isRunning = false;
+    this.isSessionActive = false;
+    this.formattedTime = '00:00:00';
   }
 
-  discardSession() {
-    if (confirm('Are you sure you want to discard this session? All corresponding data will be lost.')) {
-      this.showSummaryForm = false;
+  onFormCompleted() {
+    this.showPracticeSessionForm = false;
 
-      this.showCustomInstrument = false;
-      this.customInstrument = '';
-      this.instrumentSelection = '';
+    this.sessionSaved.emit();
 
-      this.songsPracticed = '';
-      this.techniquesPracticed = '';
-      this.thingsLearned = '';
-      this.comments = '';
-
-      this.secondsElapsed = 0;
-      this.intervalId = null;
-      this.isRunning = false;
-      this.isSessionActive = false;
-      this.updateFormattedTime();
-    }
-  }
-
-  saveSession() {
-    let finalInstrument: string = '';
-    if (this.instrumentSelection === 'Other') {
-      finalInstrument = this.customInstrument;
-    } else {
-      finalInstrument = this.instrumentSelection;
-    }
-    if (!finalInstrument.trim()) {
-      alert('Please select an instrument.');
-      return;
-    }
-
-    // HTTP request logic
-
-    this.isLoading = true;
-
-    const token = localStorage.getItem('jwt');
-
-    const payload = {
-      durationSeconds: this.secondsElapsed,
-      instrument: finalInstrument,
-      songsPracticed: this.songsPracticed,
-      techniquesPracticed: this.techniquesPracticed,
-      thingsLearned: this.thingsLearned,
-      comments: this.comments
-    };
-
-    this.http.post('http://localhost:3000/api/practice-sessions', payload, {
-      headers: { Authorization: `Bearer ${token}` }
-    }).subscribe({
-      next: (res) => {
-        this.isLoading = false;
-        console.log('Practice session saved successfully.');
-
-        this.showSummaryForm = false;
-
-        this.showCustomInstrument = false;
-        this.customInstrument = '';
-        this.instrumentSelection = '';
-
-        this.songsPracticed = '';
-        this.techniquesPracticed = '';
-        this.thingsLearned = '';
-        this.comments = '';
-
-        this.secondsElapsed = 0;
-        this.intervalId = null;
-        this.isRunning = false;
-        this.isSessionActive = false;
-        this.updateFormattedTime();
-
-        this.showSubmissionSuccess = true;
-        
-        this.sessionSaved.emit();
-      },
-      error: (err) => {
-        this.isLoading = false;
-        console.error('Error saving practice session.');
-        alert('Failed to save practice session. Please try again.');
-      }
-    });
+    this.durationSeconds = 0;
+    this.intervalId = null;
+    this.isRunning = false;
+    this.isSessionActive = false;
+    this.formattedTime = '00:00:00';
   }
 
   // TODO: add logic to disable timer start button when submission success message is being shown
