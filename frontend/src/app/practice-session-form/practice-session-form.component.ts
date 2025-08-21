@@ -88,9 +88,9 @@ export class PracticeSessionFormComponent {
   }
 
   saveSession() {
-    if (this.durationSeconds === 0) {
-      alert('Practice session duration must be greater than 0 seconds.');
-      return;
+    if (this.mode === 'create' && this.durationSeconds === 0) {
+        alert('Practice session duration must be greater than 0 seconds.');
+        return;
     }
 
     let finalInstrument: string = '';
