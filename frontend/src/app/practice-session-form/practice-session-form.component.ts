@@ -49,6 +49,7 @@ export class PracticeSessionFormComponent {
 
   @Output() formCompleted = new EventEmitter<void>();
   @Output() formDiscarded = new EventEmitter<void>();
+  @Output() formClosed = new EventEmitter<void>();
 
   onInstrumentChange() {
     this.showCustomInstrument = this.instrumentSelection === 'Other';
@@ -85,6 +86,10 @@ export class PracticeSessionFormComponent {
         }
       });
     }
+  }
+
+  closeSession() {
+    this.formClosed.emit();
   }
 
   saveSession() {

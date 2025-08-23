@@ -18,6 +18,7 @@
                 required
             >
 
+            <!-- TODO: change placeholder text to be visible even when inputs are filled -->
             <input type="text" name="songsPracticed" [(ngModel)]="songsPracticed" placeholder="Songs practiced">
             <input type="text" name="techniquesPracticed" [(ngModel)]="techniquesPracticed" placeholder="Techniques practiced">
             <input type="text" name="thingsLearned" [(ngModel)]="thingsLearned" placeholder="Things learned">
@@ -28,5 +29,6 @@
         <button type="submit" *ngIf="mode === 'edit'" class="submit-btn" [disabled]="isLoadingSave">{{ isLoadingSave ? 'Saving...' : 'Save Changes' }}</button>
         <button type="button" *ngIf="mode === 'create'" class="discard-btn" (click)="discardSession()">Discard Session</button>
         <button type="button" *ngIf="mode === 'edit'" class="discard-btn" (click)="deleteSession()" [disabled]="isLoadingDelete">{{ isLoadingDelete ? 'Deleting...' : 'Delete Session' }}</button>
+        <button type="button" *ngIf="mode === 'edit'" class="close-btn" (click)="closeSession()">Close</button>
     </form>
 </div>

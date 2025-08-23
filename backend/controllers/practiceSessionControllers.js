@@ -82,9 +82,9 @@ const updatePracticeSession = async (req, res) => {
 
     const updateData = {};
     if (instrument !== undefined) updateData.instrument = instrument;
-    if (songsPracticed !== undefined) updateData.songsPracticed = songsPracticed;
-    if (techniquesPracticed !== undefined) updateData.techniquesPracticed = techniquesPracticed;
-    if (thingsLearned !== undefined) updateData.thingsLearned = thingsLearned;
+    if (songsPracticed !== undefined) updateData.songs_practiced = songsPracticed;
+    if (techniquesPracticed !== undefined) updateData.techniques_practiced = techniquesPracticed;
+    if (thingsLearned !== undefined) updateData.things_learned = thingsLearned;
     if (comments !== undefined) updateData.comments = comments;
 
     try {

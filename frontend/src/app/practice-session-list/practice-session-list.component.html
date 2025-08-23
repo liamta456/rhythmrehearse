@@ -8,7 +8,7 @@
     <ng-template #showSessions>
         <div class="show-sessions">
             <ul class="practice-session-list">
-                <li *ngFor="let session of practiceSessions" class="practice-session-item">
+                <li *ngFor="let session of practiceSessions" class="practice-session-item" (click)="onPracticeSessionClick(session)">
                     <div class="session-instrument">{{ session.instrument }}</div>
                     <div class="session-date">{{ session.created_at | date: 'short' }}</div>
                     <div class="session-duration">{{ formatTime(session.duration_seconds) }}</div>
@@ -17,4 +17,12 @@
             </ul>
         </div>
     </ng-template>
+
+    <app-practice-session-form
+        *ngIf="showEditForm"
+        [mode]="'edit'"
+        [sessionData]="currentFullPracticeSession"
+        (formCompleted)="onFormCompleted()"
+        (formClosed)="onFormClosed()"
+    ></app-practice-session-form>
 </div>
