@@ -10,8 +10,7 @@ Full-stack music practice application developed using Angular (frontend), Node.j
 ### Home/Dashboard
 - Practice session timer
 - Progression tracker (input accomplishments for each session)
-- Session statistics calculator (ex. average practice session length, average change in practice time over a week)
-- Goals tab
+- To be completed: session statistics calculator (ex. average practice session length, average change in practice time over a week) and goals tab
 
 ## Getting Started
 - Clone the repository
